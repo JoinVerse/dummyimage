@@ -73,7 +73,7 @@ $background = new color();
 $background->set_hex( $bg_color );
 
 // Find the foreground color which is always after the 3rd slash in the url
-$fg_color = '000';
+$fg_color = 'fff';
 if ( isset( $x_pieces[2] ) ) {
 	$fg_color_parts = explode( '.', $x_pieces[2] );
 	if ( isset( $fg_color_parts[0] ) && ! empty( $fg_color_parts[0] ) ) {
