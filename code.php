@@ -182,8 +182,8 @@ if ( isset( $_GET['text'] ) && $_GET['text'] ) {
 } else {
 	$lines = 1;
 	// This is the default text string that will go right in the middle of the rectangle
-	// &#215; is the multiplication sign, it is not an 'x'
-	$text = $width." &#215; ".$height;
+	// &#35; is the hash sign '#'
+	$text = "&#35;";
 }
 
 // Ric Ewing: I modified this to behave better with long or narrow images and condensed the resize code to a single line
