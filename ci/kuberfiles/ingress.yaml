@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: dummyimage
+    namespace: dummyimage
+    annotations:
+        ingress.kubernetes.io/proxy-body-size: 10m
+        kubernetes.io/tls-acme: "true"
+        kubernetes.io/ingress.class: "nginx"
+        kubernetes.io/ingress.allow-http: "false"
+spec:
+    tls:
+    - hosts:
+      - pics.joinverse.com
+      secretName: tls-pics-joinverse-com
+    rules:
+    - host: pics.joinverse.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: dummyimage
+            servicePort: 80

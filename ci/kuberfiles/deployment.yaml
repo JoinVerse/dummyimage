@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: dummyimage
+  namespace: dummyimage
+spec:
+  replicas: 1
+  revisionHistoryLimit: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: dummyimage
+  template:
+    metadata:
+      labels:
+        app: dummyimage
+        networkpolicy/from-nginx-ingress: ""
+    spec:
+      containers:
+      - name: dummyimage
+        image: registry.joinverse.com/dummyimage:{{ DOCKER_IMAGE_TAG }}
+        ports:
+        - containerPort: 80
