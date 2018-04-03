@@ -141,15 +141,15 @@ if ( preg_match ( '/:/', $height ) ) {
 	$width = ($height * $ratio[0]) / $ratio[1];
 }
 
-//Limit the size of the image to no more than an area of 16,000,000
+//Limit the size of the image to no more than an area of 40000
 $area = $width * $height;
-if ( $area >= 16000000 || $width > 9999 || $height > 9999 ) {
+if ( $area >= 40000 || $width > 200 || $height > 200 ) {
 	die("Too big of an image!");
 }
 
 //Let's round the dimensions to 3 decimal places for aesthetics
-$width = round( $width, 3 );
-$height = round( $height, 3 );
+//$width = round( $width, 3 );
+//$height = round( $height, 3 );
 
 //I don't use this but if you wanted to angle your text you would change it here.
 $text_angle = 0;
