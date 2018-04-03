@@ -85,10 +85,10 @@ $foreground->set_hex($fg_color);
 
 // Determine the file format. This can be anywhere in the URL.
 $file_format = 'png';
-preg_match_all( '/(gif|jpg|jpeg)/', $x, $result );
-if ( isset( $result[0] ) && isset( $result[0][0] ) && $result[0][0] ) {
-	$file_format = $result[0][0];
-}
+// preg_match_all( '/(gif|jpg|jpeg)/', $x, $result );
+// if ( isset( $result[0] ) && isset( $result[0][0] ) && $result[0][0] ) {
+// 	$file_format = $result[0][0];
+// }
 
 // Find the image dimensions
 if ( substr_count( $x_pieces[0], ':' ) > 1 ) {
