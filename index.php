@@ -51,20 +51,20 @@ function imagettfbbox_t( $size, $text_angle, $fontfile, $text ){
 }
 
 // Get the query string from the URL. x would = 600x400 if the url was http://dummyimage.com/600x400
-$x = strtolower( $_GET['x'] );
+$size_param = strtolower( $_GET['x'] );
 // If the first character of $x is a / then get rid of it
-if ( $x[0] == '/' ) {
-	$x = ltrim( $x, '/' );
+if ( $size_param[0] == '/' ) {
+	$size_param = ltrim( $size_param, '/' );
 }
-$x_pieces = explode( '/', $x );
 
 // To easily manipulate colors between different formats
 include("color.class.php");
 
 // Find the background color which is always after the 2nd slash in the url
 $bg_color = 'ccc';
-if ( isset( $x_pieces[1] ) ) {
-	$bg_color_parts = explode( '.', $x_pieces[1] );
+$bg_param = strtolower( $_GET['b'] );
+if ( isset( $bg_param ) ) {
+	$bg_color_parts = explode( '.', $bg_param );
 	if ( isset( $bg_color_parts[0] ) && ! empty( $bg_color_parts[0] ) ) {
 		$bg_color = $bg_color_parts[0];
 	}
@@ -74,8 +74,9 @@ $background->set_hex( $bg_color );
 
 // Find the foreground color which is always after the 3rd slash in the url
 $fg_color = 'fff';
-if ( isset( $x_pieces[2] ) ) {
-	$fg_color_parts = explode( '.', $x_pieces[2] );
+$fg_param = strtolower( $_GET['f'] );
+if ( isset( $fg_param ) ) {
+	$fg_color_parts = explode( '.', $fg_param );
 	if ( isset( $fg_color_parts[0] ) && ! empty( $fg_color_parts[0] ) ) {
 		$fg_color = $fg_color_parts[0];
 	}
@@ -91,15 +92,15 @@ $file_format = 'png';
 // }
 
 // Find the image dimensions
-if ( substr_count( $x_pieces[0], ':' ) > 1 ) {
+if ( substr_count( $size_param, ':' ) > 1 ) {
 	die('Too many colons in the dimension paramter! There should be 1 at most.');
 }
 
-if ( strstr( $x_pieces[0], ':' ) && ! strstr( $x_pieces[0], 'x' ) ) {
+if ( strstr( $size_param, ':' ) && ! strstr( $size_param, 'x' ) ) {
 	die('To calculate a ratio you need to provide a height!');
 }
 // Dimensions are always the first paramter in the URL
-$dimensions = explode( 'x', $x_pieces[0] );
+$dimensions = explode( 'x', $size_param );
 
 // Filter out any characters that are not numbers, colons or decimal points
 $width = preg_replace( '/[^\d:\.]/i', '', $dimensions[0] );
