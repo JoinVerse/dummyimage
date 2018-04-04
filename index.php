@@ -143,7 +143,7 @@ if ( preg_match ( '/:/', $height ) ) {
 
 //Limit the size of the image to no more than an area of 1024*1024
 $area = $width * $height;
-if ( $area >= (1024*1024) || $width > 1024 || $height > 1024 ) {
+if ( $area > (1024*1024) || $width > 1024 || $height > 1024 ) {
 	die("Too big of an image!");
 }
 
