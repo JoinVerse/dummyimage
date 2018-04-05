@@ -180,17 +180,19 @@ if ( isset( $_GET['t'] ) && $_GET['t'] ) {
 	);
 	$lines = substr_count( $_GET['t'], '|' );
 	$text = preg_replace( '/\|/i', "\n", $_GET['t'] );
+	$text_aux = strlen($text);
 } else {
 	$lines = 1;
 	// This is the default text string that will go right in the middle of the rectangle
 	// &#35; is the hash sign '#'
 	$text = "&#35;";
+	$text_aux = "#";
 }
 
 // Ric Ewing: I modified this to behave better with long or narrow images and condensed the resize code to a single line
-$fontsize = max( min( $width / strlen($text) * 1.15, $height * 0.5 ), 5 );
+$fontsize = max( min( $width / strlen($text_aux) * 1.15, $height * 0.5 ), 5 );
 // Pass these variable to a function to calculate the position of the bounding box
-$textBox = imagettfbbox_t($fontsize, $text_angle, $font, $text);
+$textBox = imagettfbbox_t($fontsize, $text_angle, $font, $text_aux);
 // Calculate the width of the text box by subtracting the upper right "X" position with the lower left "X" position
 $textWidth = ceil( ( $textBox[4] - $textBox[1] ) * 1.07 );
 // Calculate the height of the text box by adding the absolute value of the upper left "Y" position with the lower left "Y" position
@@ -204,7 +206,7 @@ $textY = ceil( ( $height - $textHeight ) / 2 + $textHeight );
 //Create the rectangle with the specified background color
 imageFilledRectangle( $img, 0, 0, $width, $height, $bg_color );
 //Create and positions the text
-imagettftext( $img, $fontsize, $text_angle, $textX, $textY, $fg_color, $font, $text );
+imagettftext( $img, $fontsize, $text_angle, $textX, $textY, $fg_color, $font, 2 );
 
 
 function process_output_buffer( $buffer = '' ) {
