@@ -180,7 +180,7 @@ if ( isset( $_GET['t'] ) && $_GET['t'] ) {
 	);
 	$lines = substr_count( $_GET['t'], '|' );
 	$text = preg_replace( '/\|/i', "\n", $_GET['t'] );
-	$text_aux = strlen($text);
+	$text_aux = $text;
 } else {
 	$lines = 1;
 	// This is the default text string that will go right in the middle of the rectangle
@@ -206,7 +206,7 @@ $textY = ceil( ( $height - $textHeight ) / 2 + $textHeight );
 //Create the rectangle with the specified background color
 imageFilledRectangle( $img, 0, 0, $width, $height, $bg_color );
 //Create and positions the text
-imagettftext( $img, $fontsize, $text_angle, $textX, $textY, $fg_color, $font, 2 );
+imagettftext( $img, $fontsize, $text_angle, $textX, $textY, $fg_color, $font, $text );
 
 
 function process_output_buffer( $buffer = '' ) {
