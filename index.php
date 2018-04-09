@@ -190,7 +190,7 @@ if ( isset( $_GET['t'] ) && $_GET['t'] ) {
 }
 
 // Ric Ewing: I modified this to behave better with long or narrow images and condensed the resize code to a single line
-$fontsize = max( min( $width / strlen($text_aux) * 1.15, $height * 0.5 ), 5 );
+$fontsize = max( min( $width / (2 + strlen($text_aux)) * 1.15, $height * 0.5 ), 5 );
 // Pass these variable to a function to calculate the position of the bounding box
 $textBox = imagettfbbox_t($fontsize, $text_angle, $font, $text_aux);
 // Calculate the width of the text box by subtracting the upper right "X" position with the lower left "X" position
