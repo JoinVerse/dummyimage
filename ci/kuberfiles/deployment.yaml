@@ -4,7 +4,7 @@ metadata:
   name: dummyimage
   namespace: dummyimage
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 4
   strategy:
     type: RollingUpdate
